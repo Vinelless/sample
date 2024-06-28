@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arvin's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Arvin();</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="Portfolio.html">Portfolio</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Hello World, I'm</h1>
+                    <h2>Arvin Taladtad</h2>
+                    <h3>Web Developer</h3>
+                    <p>Welcome to My personal website.</p>
+                </div>
+                <div class="hero-image">
+                    <a href="https://www.facebook.com/arvin.carandang.165?mibextid=ZbWKwL">
+                        <img src="vin.jpg" alt="Description">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const textElement = document.querySelector('.hero-content h3');
+            const words = ["Web Developer", "Designer", "Freelancer"];
+            let wordIndex = 0;
+            let letterIndex = 0;
+            let currentWord = '';
+            let isDeleting = false;
+
+            function type() {
+                if (wordIndex < words.length) {
+                    if (!isDeleting && letterIndex <= words[wordIndex].length) {
+                        currentWord = words[wordIndex].substring(0, letterIndex++);
+                        textElement.innerHTML = currentWord;
+                    } else if (isDeleting && letterIndex >= 0) {
+                        currentWord = words[wordIndex].substring(0, letterIndex--);
+                        textElement.innerHTML = currentWord;
+                    }
+
+                    if (letterIndex == words[wordIndex].length && !isDeleting) {
+                        isDeleting = true;
+                        setTimeout(type, 1000);
+                    } else if (letterIndex === 0 && isDeleting) {
+                        isDeleting = false;
+                        wordIndex++;
+                        setTimeout(type, 800);
+                    } else {
+                        setTimeout(type, isDeleting ? 60 : 100);
+                    }
+                } else {
+                    wordIndex = 0;
+                    setTimeout(type, 800);
+                }
+            }
+            type();
+        });
+    </script>
+</body>
+</html>
+
+
